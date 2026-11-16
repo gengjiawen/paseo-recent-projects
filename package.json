@@ -1,0 +1,34 @@
+{
+  "name": "paseo-recent-projects",
+  "description": "Paseo sidebar view that orders projects and workspaces by recent activity.",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gengjiawen/paseo-recent-projects.git"
+  },
+  "files": [
+    "paseo-plugin.json",
+    "OVERVIEW.md",
+    "OVERVIEW.*.md",
+    "index.client.tsx",
+    "client/",
+    "shared/",
+    "assets/"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --test test/order.test.ts"
+  },
+  "devDependencies": {
+    "@getpaseo/plugin": "0.16.0",
+    "@tanstack/react-query": "^5.90.11",
+    "@types/react": "~19.2.0",
+    "react": "19.1.0",
+    "react-native": "0.81.5",
+    "typescript": "^5.9.3",
+    "zod": "^4.4.3"
+  },
+  "type": "module"
+}

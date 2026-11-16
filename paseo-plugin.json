@@ -1,0 +1,13 @@
+{
+  "id": "recent-projects",
+  "name": "Recent projects",
+  "description": "Orders the sidebar by recent activity, with pinned workspaces on top.",
+  "media": ["assets/sidebar-desktop.png", "assets/sidebar-mobile.png", "assets/sidebar-options.png"],
+  "translations": {
+    "zh-CN": {
+      "name": "最近项目",
+      "description": "按最近活动排序侧边栏，置顶的工作区排在最前。"
+    }
+  },
+  "requirements": { "paseo": ">=0.16.0" }
+}
