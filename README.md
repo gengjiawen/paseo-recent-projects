@@ -13,7 +13,7 @@ Paseo 0.16 or newer on the daemon and on the app you use to connect to it.
 ## Install
 
 ```bash
-paseo plugin add git:gengjiawen/paseo-recent-projects --ref v1.0.1
+paseo plugin add git:gengjiawen/paseo-recent-projects --ref v1.0.2
 ```
 
 On the daemon, turn on **Enable plugins** under Settings → Plugins (or set the root

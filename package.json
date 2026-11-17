@@ -1,7 +1,7 @@
 {
   "name": "paseo-recent-projects",
   "description": "Paseo sidebar view that orders projects and workspaces by recent activity.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "license": "MIT",
   "repository": {
