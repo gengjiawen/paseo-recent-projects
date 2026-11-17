@@ -13,7 +13,7 @@ Paseo 0.16 or newer on the daemon and on the app you use to connect to it.
 ## Install
 
 ```bash
-paseo plugin add git:gengjiawen/paseo-recent-projects --ref v1.0.0
+paseo plugin add git:gengjiawen/paseo-recent-projects --ref v1.0.1
 ```
 
 On the daemon, turn on **Enable plugins** under Settings → Plugins (or set the root
@@ -27,6 +27,7 @@ sidebar view under Settings → Sidebar.
   newest of a workspace's state change, last prompt, and creation time, so an agent that finishes a
   turn moves its project up.
 - **Workspace order** by creation time (default), last prompt, or recent activity.
+- **Three workspaces per project** by default, with a **Show more** row that expands the rest.
 - **Per-project collapse**, stored per device.
 - **Status indicators**: spinner for running, warning icon for waiting on input, colored dot for
   needs input / failed / done / idle.

@@ -7,7 +7,9 @@ Orders the sidebar by what you touched last.
 Pinned workspaces appear in their own section at the top. Below it, projects are ordered by their
 most recently active workspace, and each project lists its workspaces underneath. The menu above the
 list switches project order between recent activity, last prompt, and name, and workspace order
-between creation time, last prompt, and recent activity. Each project collapses independently.
+between creation time, last prompt, and recent activity. Each project collapses independently, and
+projects with more than three workspaces show the first three with a "Show more" row that expands
+the rest.
 
 Rows show a status indicator: a spinner while an agent runs, a warning icon while it waits on input,
 and a colored dot for needs input, failed, done, and idle. The active row and hovered rows are

@@ -16,6 +16,7 @@ export interface Preferences {
   workspaceOrder: WorkspaceOrder;
   showBackground: boolean;
   collapsed: string[];
+  expanded: string[];
 }
 
 export const PROJECT_ORDER_LABEL = {

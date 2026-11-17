@@ -17,5 +17,7 @@ export const preferences = defineSettings({
     workspaceOrder: z.enum(WORKSPACE_ORDERS).default("created"),
     showBackground: z.boolean().default(false),
     collapsed: z.array(z.string()).default([]),
+    // Projects the user expanded past the three-row preview.
+    expanded: z.array(z.string()).default([]),
   }),
 });

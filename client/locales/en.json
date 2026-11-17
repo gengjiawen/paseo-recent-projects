@@ -16,6 +16,8 @@
   "newWorkspace": "New workspace in {{project}}",
   "expand": "Expand {{project}}",
   "collapse": "Collapse {{project}}",
+  "showMore": "Show {{count}} more",
+  "showLess": "Show less",
   "openWorkspace": "Open {{workspace}}",
   "workspaceActions": "Actions for {{workspace}}",
   "pin": "Pin",

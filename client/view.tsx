@@ -17,7 +17,7 @@ import { WorkspaceActions } from "./actions";
 import { messages } from "./messages";
 import { OptionsModal, PROJECT_ORDER_LABEL, type Preferences } from "./options";
 import { compareForProjectOrder, compareWorkspaces } from "./order";
-import { density, ProjectHeader, RAIL, WorkspaceRow } from "./rows";
+import { density, ProjectHeader, RAIL, ShowMoreRow, WorkspaceRow } from "./rows";
 
 // Same visibility rules as the default sidebar: rows being archived are gone, and background
 // workspaces only show when asked for.
@@ -26,6 +26,8 @@ function isVisible(workspace: PluginWorkspaceSnapshot, showBackground: boolean):
 }
 
 const NESTED_INDENT = 22;
+// Long projects show their first few workspaces; the rest stay one click away.
+const PREVIEW_ROWS = 3;
 
 function ProjectSection({
   reference,
@@ -33,6 +35,7 @@ function ProjectSection({
   values,
   hostLabel,
   onToggle,
+  onToggleExpanded,
   onActions,
 }: {
   reference: ProjectRef;
@@ -40,14 +43,20 @@ function ProjectSection({
   values: Preferences;
   hostLabel: string | null;
   onToggle(key: string): void;
+  onToggleExpanded(key: string): void;
   onActions(reference: WorkspaceRef): void;
 }) {
+  const { t } = useTranslation(messages);
   const workspaces = useWorkspaces({
     where: (item) =>
       item.project.key === reference.key && !item.pinnedAt && isVisible(item, values.showBackground),
     orderBy: compareWorkspaces(values.workspaceOrder),
   });
   const collapsed = values.collapsed.includes(reference.key);
+  const expanded = values.expanded.includes(reference.key);
+  const shown = expanded ? workspaces : workspaces.slice(0, PREVIEW_ROWS);
+  const hidden = workspaces.length - shown.length;
+  const more = useCallback(() => onToggleExpanded(reference.key), [onToggleExpanded, reference.key]);
   return (
     <View>
       <ProjectHeader
@@ -58,9 +67,9 @@ function ProjectSection({
         hostLabel={hostLabel}
         onToggle={onToggle}
       />
-      {collapsed
-        ? null
-        : workspaces.map((workspace) => (
+      {collapsed ? null : (
+        <>
+          {shown.map((workspace) => (
             <WorkspaceRow
               key={workspace.key}
               reference={workspace}
@@ -69,6 +78,17 @@ function ProjectSection({
               onActions={onActions}
             />
           ))}
+          {hidden > 0 || (expanded && workspaces.length > PREVIEW_ROWS) ? (
+            <ShowMoreRow
+              view={view}
+              indent={NESTED_INDENT}
+              label={hidden > 0 ? t("showMore", { count: hidden }) : t("showLess")}
+              onPress={more}
+              testID={`recent-projects-more-${reference.key}`}
+            />
+          ) : null}
+        </>
+      )}
     </View>
   );
 }
@@ -127,6 +147,16 @@ function Sidebar({
         collapsed: values.collapsed.includes(key)
           ? values.collapsed.filter((item) => item !== key)
           : [...values.collapsed, key],
+      }),
+    [save, values],
+  );
+  const toggleExpanded = useCallback(
+    (key: string) =>
+      save({
+        ...values,
+        expanded: values.expanded.includes(key)
+          ? values.expanded.filter((item) => item !== key)
+          : [...values.expanded, key],
       }),
     [save, values],
   );
@@ -190,6 +220,7 @@ function Sidebar({
             values={values}
             hostLabel={hostLabels?.get(project.hostId) ?? null}
             onToggle={toggle}
+            onToggleExpanded={toggleExpanded}
             onActions={setActionsFor}
           />
         ))}

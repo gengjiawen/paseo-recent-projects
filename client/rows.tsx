@@ -138,7 +138,13 @@ export const WorkspaceRow = memo(function WorkspaceRow({
         fontSize: size.secondary,
         lineHeight: size.line,
       },
-      diff: { fontSize: size.secondary, lineHeight: size.line, fontVariant: ["tabular-nums" as const] },
+      // Never let the title squeeze the diff stat into "+116…".
+      diff: {
+        flexShrink: 0,
+        fontSize: size.secondary,
+        lineHeight: size.line,
+        fontVariant: ["tabular-nums" as const],
+      },
     }),
     [theme, size],
   );
@@ -201,6 +207,42 @@ export const WorkspaceRow = memo(function WorkspaceRow({
     </View>
   );
 });
+
+/** "Show N more" / "Show less" under a project that has more workspaces than the preview shows. */
+export function ShowMoreRow({
+  view,
+  indent,
+  label,
+  onPress,
+  testID,
+}: {
+  view: PluginSidebarViewProps;
+  indent: number;
+  label: string;
+  onPress(): void;
+  testID?: string;
+}) {
+  const { theme } = view;
+  const size = density(view);
+  return (
+    <Pressable
+      testID={testID}
+      accessibilityRole="button"
+      accessibilityLabel={label}
+      onPress={onPress}
+      style={({ pressed }) => ({
+        minHeight: view.layout.compact ? 32 : 24,
+        justifyContent: "center",
+        // Line up with workspace titles: rail + indent + status slot + gap.
+        paddingLeft: RAIL + indent + SLOT + 6,
+        paddingRight: 6,
+        backgroundColor: pressed ? theme.colors.surface1 : undefined,
+      })}
+    >
+      <Text style={{ color: theme.colors.foregroundMuted, fontSize: size.secondary }}>{label}</Text>
+    </Pressable>
+  );
+}
 
 export function RowButton({
   visible,

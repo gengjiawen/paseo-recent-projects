@@ -16,6 +16,8 @@
   "newWorkspace": "在 {{project}} 新建工作区",
   "expand": "展开 {{project}}",
   "collapse": "折叠 {{project}}",
+  "showMore": "再显示 {{count}} 个",
+  "showLess": "收起",
   "openWorkspace": "打开 {{workspace}}",
   "workspaceActions": "{{workspace}} 的操作",
   "pin": "置顶",
