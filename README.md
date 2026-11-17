@@ -40,9 +40,11 @@ sidebar view under Settings → Sidebar.
 
 ## Differences from the built-in sidebar
 
-No project icons or avatars, relative timestamps, project context menus, drag reordering, host and
-status filters, or keyboard navigation yet. Preferences live on the device, like the built-in
-sidebar's display settings.
+A project shows its icon when it has one: the uploaded image, or the same automatic favicon or
+logo the built-in sidebar finds. Projects without an image stay as a name and a chevron. Relative
+timestamps, project context menus, drag reordering, host and status filters, and keyboard
+navigation are still missing. Preferences live on the device, like the built-in sidebar's display
+settings.
 
 ## Development
 

@@ -21,8 +21,9 @@ pin, rename, copy path, and archive.
 ## How it works
 
 The view uses Paseo's sidebar view API. It reads workspace, project, and host snapshots from the
-connected daemon and keeps its display preferences on the device. It makes no network requests of
-its own.
+connected daemon and keeps its display preferences on the device. Project icons are read on the
+daemon from the project's stored image or from the same favicon and logo files the built-in
+sidebar uses. It makes no network requests of its own.
 
 ## Setup
 
@@ -33,7 +34,8 @@ desktop app.
 ## Limitations
 
 Background workspaces are hidden until you enable them in the view's options, as in the built-in
-sidebar. The view has no project icons, relative timestamps, project context menus, drag reordering,
-host or status filters, or keyboard navigation yet. Project order by recent activity responds to
+sidebar. A project row shows an icon only when the project has one. Relative timestamps, project
+context menus, drag reordering, host or status filters, and keyboard navigation are still absent.
+Project order by recent activity responds to
 agent state changes, so a project moves when one of its workspaces changes state, not only when you
 send a prompt.

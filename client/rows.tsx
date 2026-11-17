@@ -10,6 +10,7 @@ import {
 } from "@getpaseo/plugin/client";
 import { Icon } from "@getpaseo/plugin/client/react-native";
 import type { PluginWorkspaceSnapshot, WorkspaceIndicator } from "@getpaseo/plugin";
+import { ProjectMark, useProjectIcon } from "./icon";
 import { messages } from "./messages";
 
 type Theme = PluginSidebarViewProps["theme"];
@@ -300,6 +301,7 @@ export const ProjectHeader = memo(function ProjectHeader({
 }) {
   const { t } = useTranslation(messages);
   const project = useProject(reference);
+  const icon = useProjectIcon(project);
   const controls = useRowControls(view);
   const { theme } = view;
   const size = density(view);
@@ -338,6 +340,7 @@ export const ProjectHeader = memo(function ProjectHeader({
             color={theme.colors.foregroundMuted}
           />
         </View>
+        {icon ? <ProjectMark icon={icon} view={view} /> : null}
         <Text
           numberOfLines={1}
           style={{
